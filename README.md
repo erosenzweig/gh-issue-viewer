@@ -24,6 +24,28 @@ pip install -r requirements.txt
 ./manage.py runserver
 ```
 
+#### Running Tests
+
+Test can be run with the following command.
+
+_NOTE: ensure a virtual environment exists, dependencies are installed in the virtual environment, and it is activated. See above for those steps._
+
+1. In the root directory of this project, create a virtual environment if one does not exist then activate it.
+```sh
+./manage.py test
+```
+with an expected output similar to 
+```sh
+nosetests --verbosity=1
+Creating test database for alias 'default'...
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.005s
+
+OK
+Destroying test database for alias 'default'...
+```
+
 ### Start UI
 
 You can start the UI for this application by following the steps below. 
