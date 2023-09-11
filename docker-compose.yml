@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # This also copies over the ui folder into the backend container which isn't necessary. Noted
+      # as an improvement to be made in the future.
+      - .:/app
+    environment:
+      - DEBUG=True
+
+  ui:
+    container_name: ui
+    build:
+      context: .
+      dockerfile: ui/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ui:/app
+      # prevents clobbering the node_modules folder that was built in
+      # the container with the (potentially already existing) one in the ui folder
+      - /app/node_modules
