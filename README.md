@@ -118,5 +118,6 @@ Below are just a few of many considerations for enhancements in the future:
 
 ###### DevOps
 
+- resolve node_modules folder getting overwritten when mounting volume for development.
 - productionize docker images instead of running development servers.
 - add CI/CD pipelines for automated testing and triggering of deployment.

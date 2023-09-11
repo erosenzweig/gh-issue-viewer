@@ -22,8 +22,3 @@ services:
       dockerfile: ui/Dockerfile
     ports:
       - "3000:3000"
-    volumes:
-      - ./ui:/app
-      # prevents clobbering the node_modules folder that was built in
-      # the container with the (potentially already existing) one in the ui folder
-      - /app/node_modules
