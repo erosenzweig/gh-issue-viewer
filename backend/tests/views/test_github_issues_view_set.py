@@ -157,13 +157,3 @@ class GithubIssuesViewSetTestCase(APITestCase):
 
             # assertJSONEqual requires the JSON object to be a str so check the response content rather than data.
             self.assertJSONEqual(only_project_name_response.content, self.multi_mocked_issues)
-
-            project_name_and_issue_number_response = self.client.get(
-                "/api/github_issues?project_name=testproject&issue_number=123"
-            )
-            self.assertEqual(project_name_and_issue_number_response.status_code, 200)
-            self.assertDictEqual(project_name_and_issue_number_response.data[0], self.multi_mocked_issues[0])
-
-
-
-

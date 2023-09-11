@@ -13,11 +13,8 @@ class GitHubIssuesViewSet(ViewSet):
         # project_name is required
         project_name = self.request.query_params.get("project_name")
 
-        # Optional and will be None by default. The GithubIssuesService handles this case.
-        issue_number = self.request.query_params.get("issue_number")
-
         try:
-            issues = GithubIssuesService.get_project_issues(project_name, issue_number=issue_number)
+            issues = GithubIssuesService.get_project_issues(project_name)
         except (RequestException, ValueError):
             # These errors could be more specific and helpful to the caller. For example, if a project is not
             # found (404) versus a networking error occurred, or when project_name (required) is not

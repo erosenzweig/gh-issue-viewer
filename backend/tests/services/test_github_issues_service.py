@@ -149,17 +149,13 @@ class TestGithubIssuesService(TestCase):
 
     @parameterized.expand(
         [
-            (None, None),
-            (None, "123"),
-            (123, None),
-            (238, "123"),
-            (4598, 345),
-            (283746, "abc"),
+            (None),
+            (12343,),
         ]
     )
-    def test_service_raises_exception_when_project_name_or_issue_number_invalid(self, project_name, issue_number):
+    def test_service_raises_exception_when_project_name_or_issue_number_invalid(self, project_name):
         with self.assertRaises(ValueError):
-            GithubIssuesService.get_project_issues(project_name, issue_number=issue_number)
+            GithubIssuesService.get_project_issues(project_name)
 
     def test_service_raises_exception_when_project_not_found(self):
         with mock.patch(
@@ -173,7 +169,6 @@ class TestGithubIssuesService(TestCase):
 
             with self.assertRaises(HTTPError):
                 GithubIssuesService.get_project_issues("dummyprojectname")
-                GithubIssuesService.get_project_issues("dummyprojectname", issue_number="1234")
 
     def test_service_raises_exception_when_http_error_occurs(self):
         with mock.patch(
@@ -187,9 +182,3 @@ class TestGithubIssuesService(TestCase):
 
             with self.assertRaises(HTTPError):
                 GithubIssuesService.get_project_issues("dummyprojectname")
-                GithubIssuesService.get_project_issues("dummyprojectname", issue_number="1234")
-
-
-
-
-
